@@ -1,0 +1,136 @@
+{
+  "entities": {
+    "companySettings": {
+      "title": "Company Settings",
+      "description": "Company profile, tax ID, series, banking details and default document terms",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "businessName": { "type": "string", "maxLength": 200 },
+        "tradeName": { "type": "string", "maxLength": 200 },
+        "taxId": { "type": "string", "maxLength": 30 },
+        "taxRegime": { "type": "string", "maxLength": 100 },
+        "street": { "type": "string", "maxLength": 150 },
+        "exteriorNumber": { "type": "string", "maxLength": 30 },
+        "interiorNumber": { "type": "string", "maxLength": 30 },
+        "neighborhood": { "type": "string", "maxLength": 100 },
+        "city": { "type": "string", "maxLength": 100 },
+        "state": { "type": "string", "maxLength": 100 },
+        "postalCode": { "type": "string", "maxLength": 20 },
+        "country": { "type": "string", "maxLength": 50 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "whatsapp": { "type": "string", "maxLength": 50 },
+        "email": { "type": "string", "maxLength": 100 },
+        "website": { "type": "string", "maxLength": 150 },
+        "logoUrl": { "type": "string", "maxLength": 1000000 },
+        "bankName": { "type": "string", "maxLength": 100 },
+        "bankAccountHolder": { "type": "string", "maxLength": 150 },
+        "bankAccountNumber": { "type": "string", "maxLength": 50 },
+        "bankClabe": { "type": "string", "maxLength": 50 },
+        "bankNotes": { "type": "string", "maxLength": 250 },
+        "invoicePrefix": { "type": "string", "maxLength": 20 },
+        "invoiceNextNumber": { "type": "number" },
+        "remisionPrefix": { "type": "string", "maxLength": 20 },
+        "remisionNextNumber": { "type": "number" },
+        "saleNotePrefix": { "type": "string", "maxLength": 20 },
+        "saleNoteNextNumber": { "type": "number" },
+        "defaultTerms": { "type": "string", "maxLength": 1000 },
+        "defaultWarranty": { "type": "string", "maxLength": 1000 },
+        "defaultDeliveryNotice": { "type": "string", "maxLength": 1000 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId"]
+    },
+    "document": {
+      "title": "Document Record",
+      "description": "Invoice, Remission, or Sale Note",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "docType": { "type": "string", "enum": ["factura", "remision", "nota_venta"] },
+        "folio": { "type": "string", "maxLength": 50 },
+        "issueDate": { "type": "string", "maxLength": 30 },
+        "dueDate": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "enum": ["borrador", "emitida", "pagada", "pendiente", "cancelada"] },
+        "currency": { "type": "string", "maxLength": 10 },
+        "clientName": { "type": "string", "maxLength": 200 },
+        "clientTaxId": { "type": "string", "maxLength": 50 },
+        "clientPhone": { "type": "string", "maxLength": 50 },
+        "clientEmail": { "type": "string", "maxLength": 100 },
+        "clientAddress": { "type": "string", "maxLength": 300 },
+        "driverName": { "type": "string", "maxLength": 150 },
+        "vehiclePlates": { "type": "string", "maxLength": 50 },
+        "deliveryAddress": { "type": "string", "maxLength": 300 },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "discountTotal": { "type": "number" },
+        "taxRate": { "type": "number" },
+        "taxAmount": { "type": "number" },
+        "retentionAmount": { "type": "number" },
+        "total": { "type": "number" },
+        "totalInWords": { "type": "string", "maxLength": 300 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "terms": { "type": "string", "maxLength": 1000 },
+        "sourceScan": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "docType", "folio", "status", "total"]
+    },
+    "client": {
+      "title": "Client Catalog Record",
+      "description": "Saved customer contact information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "name": { "type": "string", "maxLength": 200 },
+        "taxId": { "type": "string", "maxLength": 50 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "email": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 300 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "name"]
+    },
+    "userProfile": {
+      "title": "User Profile",
+      "description": "Authenticated user profile and authorization details",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner auth UID" },
+        "email": { "type": "string", "maxLength": 100 },
+        "displayName": { "type": "string", "maxLength": 150 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "role": { "type": "string", "enum": ["admin", "facturador", "auditor"] },
+        "status": { "type": "string", "enum": ["activo", "inactivo", "pendiente"] },
+        "canViewProfit": { "type": "boolean" },
+        "canEditSettings": { "type": "boolean" },
+        "canDeleteDocs": { "type": "boolean" },
+        "addedBy": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" },
+        "lastLoginAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": "companySettings",
+      "description": "Company settings document per user"
+    },
+    "/documents/{documentId}": {
+      "schema": "document",
+      "description": "Invoices, remisiones and sales notes created by users"
+    },
+    "/clients/{clientId}": {
+      "schema": "client",
+      "description": "Saved client directory for rapid auto-completion"
+    },
+    "/users/{userId}": {
+      "schema": "userProfile",
+      "description": "Registered and authorized users with assigned roles and permissions"
+    }
+  }
+}

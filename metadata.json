@@ -1,0 +1,6 @@
+{
+  "name": "FacturaYa - Facturación, Remisiones y Notas con IA",
+  "description": "Emisión y gestión ágil de Facturas, Notas de Venta y Remisiones con escáner inteligente de partidas con IA, márgenes de ganancia y autoguardado en la nube.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
